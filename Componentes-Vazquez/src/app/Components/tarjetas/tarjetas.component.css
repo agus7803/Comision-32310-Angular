@@ -1,0 +1,25 @@
+.container{
+    padding: 30px;
+}
+
+.btn{
+    background-color: #5468ff;
+    width: 200px;
+    
+}
+
+.col-sm-4{
+    padding-top: 20px;
+}
+.card{
+    min-width: 20px;
+
+}
+.card-body{
+    align-items: center;
+}
+.card-text{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

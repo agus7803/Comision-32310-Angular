@@ -1,0 +1,35 @@
+<div class="grid-container">
+  <div class="btn-group">
+    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      seleccione la clase
+    </button>
+    <ul class="dropdown-menu" (click)="cambiarVariable1()">
+      <li><a class="dropdown-item" href="#">Clase 1</a></li>
+      <li><a class="dropdown-item" href="#">Clase 2</a></li>
+    </ul>
+  </div>
+  <table class="table border border-2">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Mail</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let usuario of usuarios">
+      <tr>
+        <th [ngClass]="usuario.nombre == 'Agustin' ? 'back-Color':'text-Color'">{{usuario.nombre}}</th>
+        <th [ngClass]="usuario.apellido == 'Vazquez' ? 'back-Color':'text-Color'">{{usuario.apellido}}</th>
+        <th [ngClass]="usuario.email == 'agustin@mail.com' ? 'back-Color':'text-Color'">{{usuario.email}}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <ng-container *ngIf="usuarios.length == 0 ">
+    <span>
+      Seleccione la clase para mostrar la informacion de los alumnos.
+    </span>
+  </ng-container>
+</div>

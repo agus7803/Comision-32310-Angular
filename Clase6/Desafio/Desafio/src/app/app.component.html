@@ -1,0 +1,15 @@
+<form [formGroup]="formulario" (ngSubmit)="enviarContacto()"> 
+  <label>Nombre: </label>
+  <input type="text" formControlName="nombre" >
+  <br>
+
+  <label>Correo: </label>
+  <input type="text" formControlName="nombre">
+  <br> 
+
+  <label>Mensaje: </label>
+  <input type="text" formControlName="nombre">
+  <br>
+
+  <button (click)="enviarContacto()">Enviar</button>
+</form>

@@ -1,0 +1,35 @@
+<form class="row g-3" [formGroup]="formularioContacto" (ngSubmit)="enviarContacto()">
+  <div class="col-md-4">
+    <label class="form-label">Nombre</label>
+    <input type="text"
+      [ngClass]="formularioContacto.get('nombre')?.errors?.['required'] ? 'form-control is-invalid':'form-control is-valid'"
+      formControlName="nombre">
+    <p class="invalid-feedback" *ngIf="formularioContacto.get('nombre')?.errors?.['required']">
+      Nombre Requerido!
+    </p>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Apellido</label>
+    <input type="text"
+      [ngClass]="formularioContacto.get('apellido')?.errors?.['required'] ? 'form-control is-invalid':'form-control is-valid'"
+      formControlName="apellido">
+    <p class="invalid-feedback" *ngIf="formularioContacto.get('apellido')?.errors?.['required']">
+      Apellido Requerido!
+    </p>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Email</label>
+    <input type="text" [ngClass]="formularioContacto.get('email')?.errors?.['required'] ? 'form-control is-invalid':'form-control is-valid' 
+        && formularioContacto.get('email')?.errors?.['email'] ? 'form-control is-invalid':'form-control is-valid'"
+      formControlName="email">
+    <p class="invalid-feedback" *ngIf="formularioContacto.get('email')?.errors?.['required']">
+      Email Requerido!
+    </p>
+    <p class="invalid-feedback" *ngIf="formularioContacto.get('email')?.errors?.['email']">
+      Email Incorrecto!
+    </p>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit" [disabled]="!formularioContacto.valid">Enviar</button>
+  </div>
+</form>

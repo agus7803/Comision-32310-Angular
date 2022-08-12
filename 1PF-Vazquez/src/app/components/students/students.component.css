@@ -1,8 +1,21 @@
-.table{
-    margin-left: 250px;
+.tabla{
+    margin: 50px;
+    margin-left: 300px;
+    width: 700px
+}
+ 
+
+.mat-table{
+    width: 100%;
 }
 
-.mat-elevation-z8{
-    margin-top: 100px;
-    width: 100%;
+.btn{
+    display: flex;
+    width: 200px;
+    background-color: #457387;
+    padding-left: 60px;
+}
+
+.boton{
+    margin-left: 225px;
 }

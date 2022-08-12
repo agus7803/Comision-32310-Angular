@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="toolbar">
   <mat-toolbar-row>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
@@ -8,6 +8,9 @@
       <button mat-menu-item>Institucion</button>
       <button mat-menu-item>Contacto</button>
     </mat-menu>
-    
+    <span appDirectivaPersonalizada>Alumnos Inscriptos</span>
+    <button mat-icon-button class="btn btn-outline-dark">
+      <mat-icon>person</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>

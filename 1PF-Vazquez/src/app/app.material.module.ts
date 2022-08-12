@@ -8,6 +8,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatMenuModule} from '@angular/material/menu'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {MatMenuModule} from '@angular/material/menu';
         MatInputModule,
         MatSlideToggleModule,
         MatToolbarModule,
-        MatMenuModule
+        MatMenuModule,
+        MatPaginatorModule
     ]
 })
 export class AppMaterialModule{}

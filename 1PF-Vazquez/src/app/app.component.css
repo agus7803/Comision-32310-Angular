@@ -12,7 +12,3 @@
 .grid-student{
     grid-area: main;
 }
-
-.grid-menu{
-    grid-area: menu;
-}

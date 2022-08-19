@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { AgregarDialogComponent } from '../agregar-dialog/agregar-dialog.component';
+import { RxjService } from '../../services/rxj.service';
+import { Subscriber, Subscription, Observable } from 'rxjs';
 
 export interface Curso {
   nombre: string;
@@ -29,15 +31,30 @@ const ELEMENT_DATA: Curso[] = [
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css']
 })
-export class StudentsComponent implements OnInit {
+export class StudentsComponent implements OnInit, OnDestroy {
   columnas: string[] = [ 'nombre', 'curso', 'cedula', 'editar', 'eliminar'];
-  dataSource: MatTableDataSource<Curso>= new MatTableDataSource(ELEMENT_DATA);
+  dataSource!: MatTableDataSource<Curso>;
+  suscripcionCurso!: Subscription;
+  dataSource$: Observable<any>;
   @ViewChild(MatTable) tabla!: MatTable<Curso>;
   constructor(
     private dialog :MatDialog,
-  ) { }
+    private rxjsService: RxjService,
+  ) { 
+    this.suscripcionCurso = this.rxjsService.obtenerCursos().subscribe((cursos) => {
+      this.dataSource = new MatTableDataSource(cursos);
+    })
+
+    this.dataSource$ = this.rxjsService.obtenerCursos();
+
+  }
+
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.suscripcionCurso.unsubscribe();
   }
 
   eliminar(elemento:Curso){

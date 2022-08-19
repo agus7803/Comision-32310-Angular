@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AgregarDialogComponent } from './components/agregar-dialog/agregar-dialog.component';
 import { DirectivaPersonalizadaDirective } from './directivas/directiva-personalizada.directive';
 import { PipePersonalizadoPipe } from './pipes/pipe-personalizado.pipe';
-import { MatPaginator } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [

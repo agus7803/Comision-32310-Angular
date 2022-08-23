@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { AgregarDialogComponent } from '../agregar-dialog/agregar-dialog.component';
-import { RxjService } from '../../services/rxj.service';
-import { Subscriber, Subscription, Observable } from 'rxjs';
+
+import { Subscription, Observable } from 'rxjs';
+import { RxjService } from 'src/app/services/rxj.service';
 
 export interface Curso {
   nombre: string;

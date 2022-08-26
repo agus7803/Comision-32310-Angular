@@ -1,0 +1,48 @@
+<div class="tabla">
+    <table mat-table class="mat-elevation-z8 mat-table" [dataSource]="dataSource">
+        <!-- Columna Nombre -->
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{ element | pipePersonalizado}}</td>
+        </ng-container>
+
+        <!-- Columna curso -->
+        <ng-container matColumnDef="curso">
+            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>Curso</th>
+            <td mat-cell *matCellDef="let element">{{ element.curso  }}</td>
+        </ng-container>
+
+        <!-- Columna Numero de Estudiantes -->
+        <ng-container matColumnDef="cedula">
+            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>cedula</th>
+            <td mat-cell *matCellDef="let element">{{ element.cedula  }}</td>
+        </ng-container>
+
+        <!-- Columna Acciones -->
+        <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>Editar</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="editar(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>Eliminar</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="eliminar(element)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    </table>
+    <div class="boton">
+        <button class="btn btn-outline-dark" (click)="agregar()">
+            <span>Agregar</span>
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToolbarModule } from '../toolbar/toolbar.module';
 import { DirectivaPersonalizadaDirective } from './directivas/directiva-personalizada.directive';
 import { PipePersonalizadoPipe } from './pipes/pipe-personalizado.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from './app.material.module';
 import { RouterModule } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 
@@ -13,21 +14,21 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     DirectivaPersonalizadaDirective,
-    PipePersonalizadoPipe
+    PipePersonalizadoPipe,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    AppMaterialModule
-    
+    AppMaterialModule,
   ],
   exports: [
     RouterModule,
     ReactiveFormsModule,
     AppMaterialModule,
     DirectivaPersonalizadaDirective,
-    PipePersonalizadoPipe
+    PipePersonalizadoPipe,
+    MatFormFieldModule
   ]
 })
 export class SharedModule { }

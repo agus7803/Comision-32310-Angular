@@ -5,16 +5,12 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 
 import { Subscription, Observable } from 'rxjs';
-import { RxjService } from 'src/app/shared/services/rxj.service';
-import { AgregarDialogComponent } from '../../agregar-dialog/agregar-dialog/agregar-dialog.component';
-import { EditDialogComponent } from '../../edit-dialog/edit-dialog/edit-dialog.component';
+import { AgregarDialogComponent } from 'src/app/cursos/components/agregar-dialog/agregar-dialog/agregar-dialog.component';
+import { EditDialogComponent } from 'src/app/cursos/components/edit-dialog/edit-dialog/edit-dialog.component';
+import { Curso, RxjService } from 'src/app/shared/services/rxj.service';
 
-export interface Curso {
-  nombre: string;
-  apellido: string;
-  curso: string;
-  cedula: number;
-}
+
+
 
 @Component({
   selector: 'app-students',
@@ -22,7 +18,7 @@ export interface Curso {
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent implements OnInit, OnDestroy {
-  columnas: string[] = [ 'nombre', 'curso', 'cedula', 'editar', 'eliminar'];
+  columnas: string[] = [ 'id', 'curso', 'salon', 'editar', 'eliminar'];
   dataSource!: MatTableDataSource<Curso>;
   suscripcionCurso!: Subscription;
   dataSource$: Observable<any>;
@@ -48,7 +44,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
   }
 
   eliminar(elemento:Curso){
-    this.dataSource.data = this.dataSource.data.filter((curso:Curso) => curso.nombre != elemento.nombre);
+    this.dataSource.data = this.dataSource.data.filter((curso:Curso) => curso.id != elemento.id);
   }
 
   editar(elemento:Curso){
@@ -60,7 +56,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(resultado => {
       if(resultado){
         //se actualiza la info
-        const item = this.dataSource.data.find(curso => curso.nombre === resultado.nombre);
+        const item = this.dataSource.data.find(curso => curso.id === resultado.id);
         const index = this.dataSource.data.indexOf(item!);
         this.dataSource.data[index] = resultado;
         console.log(this.dataSource);
@@ -72,16 +68,15 @@ export class StudentsComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(AgregarDialogComponent, {
       width: '350px',
       data: [{
-        nombre:'',
-        apellido:'',
+        id:'',
         curso:'',
-        cedula:''
+        salon:''
       }],
     });
     dialogRef.afterClosed().subscribe(resultado => {
       if(resultado){
         //se agrega la info
-        const item = this.dataSource.data.find(curso => curso.nombre === resultado.nombre);
+        const item = this.dataSource.data.find(curso => curso.id === resultado.id);
         const index = this.dataSource.data.indexOf(item!);
         this.dataSource.data.push(resultado);
         this.tabla.renderRows();

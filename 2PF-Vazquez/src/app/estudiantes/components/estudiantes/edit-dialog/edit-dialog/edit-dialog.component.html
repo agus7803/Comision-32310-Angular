@@ -3,18 +3,23 @@
     <form [formGroup]="formulario">
         <!-- Campo Nombre -->
         <mat-form-field appearance="fill">
-            <mat-label>id</mat-label>
-            <input formControlName="id" matInput>
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" matInput>
         </mat-form-field>
         <!-- Campo Apellido -->
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input formControlName="apellido" matInput>
+        </mat-form-field>
+        <!-- Campo Curso -->
         <mat-form-field appearance="fill">
             <mat-label>Curso</mat-label>
             <input formControlName="curso" matInput>
         </mat-form-field>
-        <!-- Campo Curso -->
+        <!-- Campo cedula -->
         <mat-form-field appearance="fill">
-            <mat-label>Salon</mat-label>
-            <input formControlName="salon" matInput>
+            <mat-label>cedula</mat-label>
+            <input formControlName="cedula" matInput>
         </mat-form-field>
     </form>
 </div>

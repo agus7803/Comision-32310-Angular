@@ -1,9 +1,9 @@
 <div class="tabla">
     <table mat-table class="mat-elevation-z8 mat-table" [dataSource]="dataSource">
         <!-- Columna Nombre -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>id</th>
-            <td mat-cell *matCellDef="let element">{{ element.id}}</td>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{ element | pipePersonalizado}}</td>
         </ng-container>
 
         <!-- Columna curso -->
@@ -13,9 +13,9 @@
         </ng-container>
 
         <!-- Columna Numero de Estudiantes -->
-        <ng-container matColumnDef="salon">
-            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>Salon</th>
-            <td mat-cell *matCellDef="let element">{{ element.salon  }}</td>
+        <ng-container matColumnDef="cedula">
+            <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>cedula</th>
+            <td mat-cell *matCellDef="let element">{{ element.cedula  }}</td>
         </ng-container>
 
         <!-- Columna Acciones -->

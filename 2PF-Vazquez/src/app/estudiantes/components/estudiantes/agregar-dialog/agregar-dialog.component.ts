@@ -18,9 +18,10 @@ export class AgregarDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data:Curso
   ) { 
     this.formulario = this.fb.group({
-      id: new FormControl(''),
+      nombre: new FormControl(''),
+      apellido: new FormControl(''),
       curso: new FormControl(''),
-      salon: new FormControl(''),
+      cedula: new FormControl(''),
     })
   }
 

@@ -12,3 +12,9 @@
 .grid-student{
     grid-area: main;
 }
+
+.principal{
+    margin: 50px;
+    margin-left: 570px;
+    font-size: 30px;
+}

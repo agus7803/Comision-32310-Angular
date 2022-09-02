@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Curso } from 'src/app/shared/services/rxj.service';
+import { Curso } from 'src/app/modelo/curso';
+
 
 
 

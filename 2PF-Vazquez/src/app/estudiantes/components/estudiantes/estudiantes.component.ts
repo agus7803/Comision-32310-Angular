@@ -5,8 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 
 import { Subscription, Observable } from 'rxjs';
-import {  RxjService } from 'src/app/shared/services/rxj.service';
-import { Estudiante } from '../../../shared/services/rxj.service';
+import { Estudiante, RxjService } from 'src/app/core/services/rxj.service';
 import { AgregarDialogComponent } from './agregar-dialog/agregar-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog/edit-dialog.component';
 

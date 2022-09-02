@@ -4,10 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 
-import { Subscription, Observable } from 'rxjs';
+import { Subscription} from 'rxjs';
 import { AgregarDialogComponent } from 'src/app/cursos/components/agregar-dialog/agregar-dialog/agregar-dialog.component';
 import { EditDialogComponent } from 'src/app/cursos/components/edit-dialog/edit-dialog/edit-dialog.component';
-import { Curso, RxjService } from 'src/app/shared/services/rxj.service';
+import { Curso } from 'src/app/modelo/curso';
+
+import { CursosService } from '../../../../core/services/cursos.service';
 
 
 
@@ -21,18 +23,14 @@ export class StudentsComponent implements OnInit, OnDestroy {
   columnas: string[] = [ 'id', 'curso', 'salon', 'editar', 'eliminar'];
   dataSource!: MatTableDataSource<Curso>;
   suscripcionCurso!: Subscription;
-  dataSource$: Observable<any>;
   @ViewChild(MatTable) tabla!: MatTable<Curso>;
   constructor(
     private dialog :MatDialog,
-    private rxjsService: RxjService,
+    private cursoService: CursosService
   ) { 
-    this.suscripcionCurso = this.rxjsService.obtenerCursos().subscribe((cursos) => {
+    this.suscripcionCurso = this.cursoService.obtenerCurso().subscribe((cursos) => {
       this.dataSource = new MatTableDataSource(cursos);
     })
-
-    this.dataSource$ = this.rxjsService.obtenerCursos();
-
   }
 
 
@@ -43,8 +41,11 @@ export class StudentsComponent implements OnInit, OnDestroy {
     this.suscripcionCurso.unsubscribe();
   }
 
-  eliminar(elemento:Curso){
-    this.dataSource.data = this.dataSource.data.filter((curso:Curso) => curso.id != elemento.id);
+  eliminar(id:string){
+    this.cursoService.eliminarCurso(id).subscribe((curso:Curso) =>{
+      alert(`${curso.id} - ${curso.curso} eliminado satisfactoriamente`);
+      this.ngOnInit();
+    });
   }
 
   editar(elemento:Curso){
@@ -53,14 +54,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
       data: elemento
     });
 
-    dialogRef.afterClosed().subscribe(resultado => {
+    dialogRef.afterClosed().subscribe((resultado) => {
       if(resultado){
         //se actualiza la info
-        const item = this.dataSource.data.find(curso => curso.id === resultado.id);
-        const index = this.dataSource.data.indexOf(item!);
-        this.dataSource.data[index] = resultado;
-        console.log(this.dataSource);
-        this.tabla.renderRows();
+        alert(`${elemento.id}-${elemento.curso} fue editado satisfactoriamente`);
       }
     })
   }

@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Curso } from '../../../../shared/services/rxj.service';
+
+import { Curso } from '../../../../modelo/curso';
+import { CursosService } from '../../../../core/services/cursos.service';
 
 
 @Component({
@@ -13,12 +15,12 @@ export class EditDialogComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(
+    private cursoService: CursosService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data:Curso
   ) { 
     this.formulario = fb.group({
-      id: new FormControl(''),
       curso: new FormControl(''),
       salon: new FormControl(''),
     })
@@ -28,7 +30,14 @@ export class EditDialogComponent implements OnInit {
   }
 
   actualizar(){
-    this.dialogRef.close(this.formulario.value)
+    const c: Curso = {
+      id: this.data.id,
+      curso: this.formulario.value.curso,
+      salon: this.formulario.value.salon,
+    }
+    this.cursoService.modificarCurso(c).subscribe((curso:Curso) => {
+      this.dialogRef.close(curso);
+    });
   }
 
   cerrar(){

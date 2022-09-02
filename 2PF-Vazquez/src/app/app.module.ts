@@ -7,11 +7,15 @@ import { SharedModule } from './shared/shared.module';
 import { ToolBarComponent } from './toolbar/components/toolbar.component';
 import { EstudiantesModule } from './estudiantes/estudiantes.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolBarComponent
+    ToolBarComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -19,7 +23,8 @@ import { ToolbarModule } from './toolbar/toolbar.module';
     CursosModule,
     EstudiantesModule,
     SharedModule,
-    ToolbarModule
+    ToolbarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

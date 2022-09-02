@@ -5,9 +5,7 @@ import { StudentsComponent } from './cursos/components/students/students/student
 import { EstudiantesComponent } from './estudiantes/components/estudiantes/estudiantes.component';
 
 const routes: Routes = [
-  {path: 'Cursos' , component:StudentsComponent},
-  {path: 'Estudiantes', component:EstudiantesComponent}
-
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { StudentsComponent } from './cursos/components/students/students/students.component';
-import { EstudiantesComponent } from './estudiantes/components/estudiantes/estudiantes.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+  {
+    path: 'auth',
+    loadChildren:() => import('./auth/auth.module').then((m) => m.AuthModule)
+  },
+  {path:'', redirectTo:'/auth/login', pathMatch:'full'}
 ];
 
 @NgModule({

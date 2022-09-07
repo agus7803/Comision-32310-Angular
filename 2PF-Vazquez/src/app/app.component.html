@@ -1,4 +1,5 @@
 <div class="grid-container">
     <app-tool-bar class="grid-header"></app-tool-bar>
+    {{ sesion$ | async | json }}
 </div>
 <router-outlet></router-outlet>

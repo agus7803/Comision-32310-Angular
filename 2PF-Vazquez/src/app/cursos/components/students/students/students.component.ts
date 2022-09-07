@@ -1,7 +1,9 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 
 import { Subscription} from 'rxjs';
@@ -10,6 +12,7 @@ import { EditDialogComponent } from 'src/app/cursos/components/edit-dialog/edit-
 import { Curso } from 'src/app/modelo/curso';
 
 import { CursosService } from '../../../../core/services/cursos.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 
 
@@ -26,7 +29,9 @@ export class StudentsComponent implements OnInit, OnDestroy {
   @ViewChild(MatTable) tabla!: MatTable<Curso>;
   constructor(
     private dialog :MatDialog,
-    private cursoService: CursosService
+    private cursoService: CursosService,
+    private auth: AuthService,
+    private router: Router
   ) { 
     this.suscripcionCurso = this.cursoService.obtenerCurso().subscribe((cursos) => {
       this.dataSource = new MatTableDataSource(cursos);
@@ -73,10 +78,11 @@ export class StudentsComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(resultado => {
       if(resultado){
         //se agrega la info
-        const item = this.dataSource.data.find(curso => curso.id === resultado.id);
-        const index = this.dataSource.data.indexOf(item!);
-        this.dataSource.data.push(resultado);
-        this.tabla.renderRows();
+        // const item = this.dataSource.data.find(curso => curso.id === resultado.id);
+        // const index = this.dataSource.data.indexOf(item!);
+        // this.dataSource.data.push(resultado);
+        // this.tabla.renderRows();
+        
       }
     })
   }

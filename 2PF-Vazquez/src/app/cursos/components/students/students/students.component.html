@@ -1,5 +1,6 @@
-<div class="tabla">
-    <table mat-table class="mat-elevation-z8 mat-table" [dataSource]="dataSource">
+<mat-spinner class="mat-spinner" *ngIf="(cargando$ | async)"></mat-spinner>
+<div *ngIf="!(cargando$ | async)" class="tabla">
+    <table mat-table  class="mat-elevation-z8 mat-table" [dataSource]="dataSource">
         <!-- Columna Nombre -->
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>Id</th>
@@ -30,7 +31,7 @@
         <ng-container matColumnDef="eliminar">
             <th mat-header-cell *matHeaderCellDef appDirectivaPersonalizada>Eliminar</th>
             <td mat-cell *matCellDef="let element">
-                <button mat-icon-button (click)="eliminar(element.id)">
+                <button mat-icon-button (click)="eliminar(element)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

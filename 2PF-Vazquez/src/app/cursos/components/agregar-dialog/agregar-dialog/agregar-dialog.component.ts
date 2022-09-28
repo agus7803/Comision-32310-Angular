@@ -1,7 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Curso } from 'src/app/core/services/rxj.service';
+import { Store } from '@ngrx/store';
+import { Curso } from 'src/app/modelo/curso';
+
+import { CursosService } from '../../../../core/services/cursos.service';
+import { CursoState } from '../../../state/cursos.reducer';
+import { cargarCursos } from '../../../state/cursos.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -15,12 +21,15 @@ export class AgregarDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AgregarDialogComponent>,
+    private cursosService: CursosService,
+    private store: Store<CursoState>,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data:Curso
   ) { 
     this.formulario = this.fb.group({
-      id: new FormControl(''),
-      curso: new FormControl(''),
-      salon: new FormControl(''),
+      id: new FormControl('',[Validators.required]),
+      curso: new FormControl('',[Validators.required]),
+      salon: new FormControl('',[Validators.required]),
     })
   }
 
@@ -32,6 +41,17 @@ export class AgregarDialogComponent implements OnInit {
   }
 
   agregar(){
+    const curso: Curso = {
+      id: this.formulario.value.id,
+      curso: this.formulario.value.curso,
+      salon: this.formulario.value.salon,
+    }
     this.dialogRef.close(this.formulario.value);
+    this.cursosService.nuevoCurso(curso).subscribe((curso) =>{
+      this.store.dispatch(cargarCursos())
+      this.snackBar.open(`${curso.curso} fue agregado correctamente`, 'Ok', {duration: 3000});
+    }
+    
+    )
   }
 }

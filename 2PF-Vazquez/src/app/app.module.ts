@@ -11,6 +11,11 @@ import { AuthModule } from './auth/auth.module';
 import { ToolBarComponent } from './toolbar/components/toolbar.component';
 import { AuthService } from './core/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { ROOT_REDUCERS } from './state/app.state';
+import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -27,7 +32,10 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     ToolbarModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([]),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

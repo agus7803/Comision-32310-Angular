@@ -23,7 +23,7 @@ export class CursosService {
     })
   }
 
-  nuevoCurso(curso:Curso){
+  nuevoCurso(curso:Curso): Observable<Curso>{
     return this.http.post<Curso>(`${this.api}/cursos`, curso);
   }
 
@@ -31,7 +31,7 @@ export class CursosService {
     return this.http.put<Curso>(`${this.api}/cursos/${curso.id}`, curso);
   }
 
-  eliminarCurso(id:string){
-    return this.http.delete<Curso>(`${this.api}/cursos/${id}`);
+  eliminarCurso(curso:Curso){
+    return this.http.delete<Curso>(`${this.api}/cursos/${curso.id}`);
   }
 }

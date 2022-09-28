@@ -9,7 +9,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatMenuModule} from '@angular/material/menu'; 
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     exports: [
@@ -22,7 +24,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatSlideToggleModule,
         MatToolbarModule,
         MatMenuModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatCheckboxModule,
+        MatProgressSpinnerModule,
+        MatSnackBarModule
     ]
 })
 export class AppMaterialModule{}

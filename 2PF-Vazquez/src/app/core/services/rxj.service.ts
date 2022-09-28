@@ -8,7 +8,7 @@ export interface Estudiante {
 }
 
 export interface Curso {
-  id: number;
+  id: string;
   curso: string;
   salon: number;
 }

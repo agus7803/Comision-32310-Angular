@@ -1,20 +1,26 @@
 <mat-card class="form-card">
-<h1 mat-dialog-title>Login</h1>
-<div mat-dialog-content>
-    <form [formGroup]="formulario" (ngSubmit)="login()">
-        <!-- Campo Usuario -->
-        <mat-form-field appearance="fill">
-            <mat-label>Usuario</mat-label>
-            <input placeholder="Usuario" formControlName="usuario" matInput>
-        </mat-form-field>
-        <!-- Campo Contraseña -->
-        <mat-form-field appearance="fill">
-            <mat-label>Contraseña</mat-label>
-            <input placeholder="Contraseña" formControlName="contrasenia" matInput [type]="'password'">
-        </mat-form-field>
-        <div mat-dialog-actions>
-            <button mat-button type="submit" >Ingresar</button>
+    <h1 mat-dialog-title>Login</h1>
+    <div mat-dialog-content >
+        <form class="form-card1" [formGroup]="formulario" (ngSubmit)="login()">
+            <!-- Campo Usuario -->
+            <mat-form-field appearance="fill">
+                <mat-label>Usuario</mat-label>
+                <input placeholder="Usuario" formControlName="nombreUsuario" matInput>
+            </mat-form-field>
+            <!-- Campo Contraseña -->
+            <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input placeholder="Contraseña" formControlName="contrasenia" matInput [type]="'password'">
+            </mat-form-field>
+            <!-- Campo Admin -->
+            <div>
+            <mat-checkbox appearance="fill" formControlName="admin">
+                admin
+            </mat-checkbox>
         </div>
-    </form>
-</div>
+            <div mat-dialog-actions>
+                <button mat-button type="submit">Ingresar</button>
+            </div>
+        </form>
+    </div>
 </mat-card>

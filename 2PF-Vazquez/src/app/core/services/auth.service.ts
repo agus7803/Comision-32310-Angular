@@ -6,6 +6,10 @@ import { Usuario } from 'src/app/modelo/usuario';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { AppState } from 'src/app/state/app.state';
+import { Store } from '@ngrx/store';
+import { crearSesion } from 'src/app/state/actions/usuario.action';
+import { usuarioReducer } from '../../state/reducers/usuario.reducer';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +21,8 @@ export class AuthService {
   
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {
     const sesion: Sesion = {
       sesionActiva: false,
@@ -26,29 +31,29 @@ export class AuthService {
    }
 
 
-   iniciarSesion(usuario: Usuario){
-    this.http.get<Usuario[]>(`${this.api}/usuarios`).pipe(
-
+   iniciarSesion(nombreUsuario: string, contrasenia:string, admin:boolean){
+    return this.http.get<Usuario[]>(`${this.api}/usuarios`).pipe(
       map((usuarios: Usuario[]) => {
-        return  usuarios.filter((u: Usuario) => u.usuario === usuario.usuario && u.contrasenia === usuario.contrasenia)[0];
-      }) 
-    ).subscribe((usuario: Usuario) => {
-      console.log('el usuario es', usuario);
-      if(usuario){
-
-        const sesion: Sesion = {
-          sesionActiva: true,
-          usuario: {
-            usuario: usuario.usuario,
-            contrasenia: usuario.contrasenia
+        return usuarios.filter((usuario: Usuario) => usuario.nombreUsuario === nombreUsuario && usuario.contrasenia === contrasenia && usuario.admin === admin)[0]
+      })).subscribe((usuario:Usuario) => {
+        if(usuario){
+         this.store.dispatch(crearSesion({usuario: usuario}));
+          const sesion: Sesion = {
+            sesionActiva: true,
+            usuario: {
+              nombreUsuario: usuario.nombreUsuario,
+              contrasenia: usuario.contrasenia,
+              admin: usuario.admin,
+              id:''
+            }
           }
+          this.sesionSubject.next(sesion);
+          this.router.navigate(['/Cursos']);
+        }else{
+          alert('No se encontro el usuario');
         }
-        this.sesionSubject.next(sesion);
-        this.router.navigate(['/Cursos']);
-      }else{
-        alert('No se encontro el usuario');
-      }
-    }) 
+    }
+      ) 
    }
 
    cerrarSesion(){

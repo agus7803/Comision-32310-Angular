@@ -104,5 +104,9 @@
       }
     }
   },
-  "defaultProject": "2PF-Vazquez"
+  "defaultProject": "2PF-Vazquez",
+  "cli": {
+    "defaultCollection": 
+      "@ngrx/schematics"
+  }
 }

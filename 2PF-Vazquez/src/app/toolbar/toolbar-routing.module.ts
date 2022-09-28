@@ -8,11 +8,6 @@ import { EstudiantesComponent } from '../estudiantes/components/estudiantes/estu
 
 const routes: Routes = [
   {path: 'Cursos', component: StudentsComponent, canActivate: [AuthGuard]},
-  // {
-  //   path: 'cursos',
-  //   loadChildren: () => import('../cursos/cursos.module').then((m) => m.CursosModule),
-  //   canActivate: [AuthGuard]
-  // },
   {path: 'Estudiantes', component:EstudiantesComponent}
 ];
 

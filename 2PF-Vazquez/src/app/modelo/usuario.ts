@@ -1,5 +1,6 @@
 export interface Usuario{
-    usuario: string;
+    nombreUsuario: string;
     contrasenia: string;
-    
+    admin: boolean;
+    id: string;
 }

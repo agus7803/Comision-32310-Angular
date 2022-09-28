@@ -58,7 +58,6 @@ export class EstudiantesComponent implements OnInit, OnDestroy {
         const item = this.dataSource.data.find(estudiantes => estudiantes.nombre === resultado.nombre);
         const index = this.dataSource.data.indexOf(item!);
         this.dataSource.data[index] = resultado;
-        console.log(this.dataSource);
         this.tabla.renderRows();
        }
      })
